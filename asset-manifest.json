@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Jovana-99/intern_test_jovana/static/css/main.84d32649.css",
-    "main.js": "/Jovana-99/intern_test_jovana/static/js/main.d77aa76a.js",
-    "index.html": "/Jovana-99/intern_test_jovana/index.html",
-    "main.84d32649.css.map": "/Jovana-99/intern_test_jovana/static/css/main.84d32649.css.map",
-    "main.d77aa76a.js.map": "/Jovana-99/intern_test_jovana/static/js/main.d77aa76a.js.map"
+    "main.css": "/intern_test_jovana/static/css/main.84d32649.css",
+    "main.js": "/intern_test_jovana/static/js/main.d77aa76a.js",
+    "index.html": "/intern_test_jovana/index.html",
+    "main.84d32649.css.map": "/intern_test_jovana/static/css/main.84d32649.css.map",
+    "main.d77aa76a.js.map": "/intern_test_jovana/static/js/main.d77aa76a.js.map"
   },
   "entrypoints": [
     "static/css/main.84d32649.css",
