@@ -1,8 +1,9 @@
 import React from 'react'
+import { IViewProps } from '../models/propsModels'
 import './View.css'
 
-const View = ({ view, changeView }) => {
-    const changeViewOnClick = (btn) => {
+const View = ({ view, changeView }: IViewProps) => {
+    const changeViewOnClick = (btn: string): void => {
         if (btn === 'all' && view) {
             changeView()
         } else if (btn === 'new' && !view) {
@@ -14,13 +15,13 @@ const View = ({ view, changeView }) => {
         <div className="view-btns">
             <button
                 className={'view-btn btn ' + (view ? 'not_active' : 'active')}
-                onClick={() => changeViewOnClick('all')}
+                onClick={(): void => changeViewOnClick('all')}
             >
                 All Promotions
             </button>
             <button
                 className={'view-btn btn ' + (view ? 'active' : 'not_active')}
-                onClick={() => changeViewOnClick('new')}
+                onClick={(): void => changeViewOnClick('new')}
             >
                 New Customers
             </button>

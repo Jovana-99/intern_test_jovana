@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Card } from './Card'
+import { ICardsProps } from '../models/propsModels.js'
 import './Cards.css'
 
-const Cards = ({ view, data }) => {
+const Cards = ({ data }: ICardsProps) => {
     if (!data) {
         return <h1 style={{ color: 'white' }}>Not found</h1>
     } else {

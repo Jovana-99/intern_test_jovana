@@ -1,6 +1,7 @@
 import React from 'react'
+import { ICardProps } from '../models/propsModels'
 
-export const Card = ({ promo }) => {
+export const Card = ({ promo }: ICardProps) => {
     return (
         <div className="card">
             <div className="container">
