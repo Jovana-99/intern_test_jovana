@@ -1,12 +1,15 @@
 /*----- CARD STYLE -----*/
 
-.cards{
+.cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 40px;
+
+    animation-name: appear;
+    animation-duration: 2s;
 }
 
-.card{
+.card {
     min-width: 300px;
     margin: 30px;
     border-radius: 20px;
@@ -16,70 +19,70 @@
 }
 
 .card:hover,
-.card:focus-within{
-    transform: scale(1.05); 
+.card:focus-within {
+    transform: scale(1.05);
 }
 
 /*-----CARD TITLE------*/
 
-.card-title{
+.card-title {
     position: relative;
     width: max-content;
 }
 
-.card-title::after{
+.card-title::after {
     content: '';
     position: absolute;
     height: 3px;
-    left:0px;
-    bottom:-5px;
+    left: 0px;
+    bottom: -5px;
     width: 100%;
     background: var(--clr-accent);
-    transform-origin:left;
+    transform-origin: left;
     transform: scaleX(0);
     transition: transform 500ms ease-in;
 }
 
 .card:hover .card-title::after,
-.card:focus-within .card-title::after{
+.card:focus-within .card-title::after {
     transform: scaleX(1);
 }
 
 /*---- CARD CONTAINER -----*/
 
-.container{
+.container {
     position: relative;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
-img{
+img {
     width: 100%;
     display: block;
     border-radius: 20px 20px 0 0;
 }
 
-.details{
+.details {
     padding: 20px 30px;
 }
 
-.details>h3{
+.details > h3 {
     color: var(--clr-white);
     font-size: 20px;
     font-weight: 600;
     margin: 10px 0 20px 0;
 }
 
-.details>p{
+.details > p {
     color: var(--clr-text);
     font-size: 15px;
     line-height: 30px;
     font-weight: 400;
-    padding:10px 20px;
+    padding: 10px 20px;
 }
 
 /* -----BUTTONS----- */
 
-.card-btns{
+.card-btns {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -88,15 +91,15 @@ img{
     margin-top: 20px;
 }
 
-.card-btn{
+.card-btn {
     font-size: 13px;
-    width:150px;
-    margin:10px;
+    width: 150px;
+    margin: 10px;
     border-radius: 14px;
     padding: 10px 20px;
 }
 
 .card-btn:hover,
-.card-btn:focus{
+.card-btn:focus {
     background-color: var(--clr-white);
 }
