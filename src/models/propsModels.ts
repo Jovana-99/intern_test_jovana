@@ -1,14 +1,10 @@
-import { IData } from './dataModel'
+import { IData } from './index'
 
 export interface IViewProps {
     view: boolean
-    changeView: () => void
+    setIsNewCustomerView: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface ICardsProps {
     data: IData[] | undefined
-}
-
-export interface ICardProps {
-    promo: IData
 }

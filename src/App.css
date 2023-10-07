@@ -1,4 +1,3 @@
-/*----- VARIABLES -----*/
 :root {
     --clr-bg: #13171b;
     --clr-bg-card: #1b1a28;
@@ -29,8 +28,6 @@ body {
     place-items: center center;
 }
 
-/* -----BUTTON----- */
-
 .btn {
     font-size: 15px;
     font-weight: 600;
@@ -40,8 +37,6 @@ body {
     background-color: var(--clr-accent);
     transition: background-color 0.2s ease;
 }
-
-/* ----- ANIMATION ------ */
 
 @keyframes appear {
     from {

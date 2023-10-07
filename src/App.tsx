@@ -1,50 +1,61 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import axios from 'axios'
-import View from './components/View'
-import Cards from './components/Cards'
-import { IData } from './models/dataModel.js'
+import { View, Cards, ErrorView } from './components/index'
+import { IData } from './models/index'
 import './App.css'
 
-function App() {
-    const [newCustomerView, setnewCustomerView] = useState<boolean>(false)
+export function App() {
+    const [isNewCustomerView, setIsNewCustomerView] = useState<boolean>(false)
     const [data, setData] = useState<IData[] | undefined>()
+    const [processedData, setProcessedData] = useState<IData[] | undefined>()
 
-    const changeView = (): void => {
-        setnewCustomerView(!newCustomerView)
+    const fetchData = async (): Promise<IData[]> => {
+        const response = await axios.get<IData[]>(
+            'https://www.mocky.io/v2/5bc3b9cc30000012007586b7'
+        )
+        return response.data
     }
 
-    useEffect((): void => {
-        axios
-            .get('https://www.mocky.io/v2/5bc3b9cc30000012007586b7')
-            .then((res) => {
-                //console.log(res.data);
-                if (newCustomerView) {
-                    let filteredData: IData[] = res.data
-                        .filter(
-                            (promo: IData) => promo.onlyNewCustomers === true
-                        )
-                        .sort((a: IData, b: IData) => {
-                            return a.sequence - b.sequence
-                        })
-                    setData(filteredData)
-                } else {
-                    res.data.sort((a: IData, b: IData) => {
-                        return a.sequence - b.sequence
-                    })
-                    setData(res.data)
-                }
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [newCustomerView])
+    const processData = useCallback(
+        (data: IData[] | undefined): IData[] | undefined => {
+            if (isNewCustomerView && data) {
+                return data
+                    .filter((promo) => promo.onlyNewCustomers)
+                    .sort((a, b) => a.sequence - b.sequence)
+            } else if (data) {
+                return [...data].sort((a, b) => a.sequence - b.sequence)
+            }
+        },
+        [isNewCustomerView]
+    )
 
-    return (
+    useEffect(() => {
+        const initializeData = async (): Promise<void> => {
+            try {
+                const fetchedData = await fetchData()
+                setData(fetchedData)
+            } catch (error: any) {
+                console.error('Error fetching data:', error)
+            }
+        }
+
+        initializeData()
+    }, [])
+
+    useEffect(() => {
+        const updatedData = processData(data)
+        setProcessedData(updatedData)
+    }, [isNewCustomerView, data, processData])
+
+    return processedData && processedData.length > 0 ? (
         <>
-            <View view={newCustomerView} changeView={changeView} />
-            <Cards data={data} />
+            <View
+                view={isNewCustomerView}
+                setIsNewCustomerView={setIsNewCustomerView}
+            />
+            <Cards data={processedData} />
         </>
+    ) : (
+        <ErrorView />
     )
 }
-
-export default App
